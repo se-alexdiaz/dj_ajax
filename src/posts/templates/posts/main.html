@@ -7,12 +7,15 @@
 
 
 {% block title %}
-posts
+Posts
 {% endblock title %}
 
 {% block content%}
-    {% for obj in qs %}
-        {{ obj.title }} - {{ obj.body }} <br>
-    {% endfor %}
+    
+    <div id="spinnerBox">
+        <div class="spinner-border" role="status"></div>
+    </div>
+
+    <div id="postsBox"></div>
     <div id="hello-world"></div>
 {% endblock content%}
