@@ -1,12 +1,27 @@
 from django.shortcuts import render
 from .models import Post
 from django.http import JsonResponse
+from .forms import PostForm
+from profiles.models import Profile
 
 # Create your views here.
 
 def post_list_and_create(request):
-    qs = Post.objects.all()
-    return render(request, 'posts/main.html', {'qs': qs})
+    form = PostForm(request.POST or None)
+    # qs = Post.objects.all()
+
+    if  request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        if form.is_valid():
+            author = Profile.objects.get(user=request.user)
+            instance = form.save(commit=False)
+            instance.author = author
+            instance.save()
+
+    context = { 
+        'form': form,
+    }
+
+    return render(request, 'posts/main.html', context)
 
 def load_post_data_view(request, num_posts):
 
@@ -33,7 +48,7 @@ def load_post_data_view(request, num_posts):
 
 
 def like_unlike_post(request):
-    if request.method == 'POST':
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         pk = request.POST.get('pk')
         obj = Post.objects.get(pk=pk)
 
