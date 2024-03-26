@@ -4,6 +4,14 @@ const spinnerBox = document.getElementById('spinnerBox')
 const loadBtn = document.getElementById('loadBnt')
 const endBox = document.getElementById('endBox')
 
+const postForm = document.getElementById('postForm')
+const title = document.getElementById('id_title')
+const body = document.getElementById('id_body')
+const csrf = document.getElementsByName('csrfmiddlewaretoken')
+console.log(csrf)
+
+const alertBox = document.getElementById('alertBox')
+
 let visible = 3
 
 // using jQuery
@@ -114,8 +122,58 @@ const getData = () => {
 loadBtn.addEventListener('click', () => {
     spinnerBox.classList.remove('not-visible')
     visible += 3
-    // getData()
+    getData()
 
 })
+
+postForm.addEventListener('submit', e => {
+    e.preventDefault()
+
+    $.ajax({
+        type: 'POST',
+        url: '',
+        data: {
+            'csrfmiddlewaretoken': csrf[0].value,
+            'title': title.value,
+            'body': body.value
+        },
+        success: function(response) {
+            console.log(response)
+            postsBox.insertAdjacentHTML('afterbegin',  `
+
+                <div class="card mb-2">
+            
+                    <div class="card-body">
+                        <h5 class="card-title">${response.title}</h5>
+                        <p class="card-text">${response.content}</p>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-1">
+                                <a href="#" class="btn btn-primary">Details</a>
+                            </div>
+                            <div class="col-2">
+                                <form class="like-unlike-forms" data-form-id="${response.id}">                                        
+                                    <button href="#" id="like-unlike-${response.id}" class="btn btn-primary">Like (0)</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>            
+                </div>
+            `)
+            likeUnlikePosts()
+            $('#addPostModal').modal('hide')
+            handleAlerts('success', 'New post added!')
+        },
+        error: function(error) {
+            console.log('error', error)
+            handleAlerts('danger', 'Something went wrong...')
+        }
+
+    })
+        
+})
+
 
 getData()

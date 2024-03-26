@@ -15,7 +15,7 @@ Posts
 
 
     <!-- Modal -->
-    <div class="modal fade" id="addPostModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -28,8 +28,8 @@ Posts
                         {% csrf_token %}
                         {{form|crispy}}
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">close</button>
-                            <button type="submit" class="btn btn-success">+ add</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" id="submitFormBtn" class="btn btn-success">Add Post</button>
                         </div>
                     </form>
                 </div>
@@ -37,9 +37,11 @@ Posts
         </div>
     </div>
 
+
+    <div id="alertBox"></div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#addPostModel">
-        add post
+    <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#addPostModal">
+        Add New Post
     </button>
 
     <div id="postsBox"></div>    
