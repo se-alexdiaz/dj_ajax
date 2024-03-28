@@ -18,7 +18,7 @@ def post_list_and_create(request):
             instance.save()
             return JsonResponse({
                 'title': instance.title,
-                'body': instance.body,
+                'content': instance.body,
                 'author': instance.author.user.username,
                 'id': instance.id,
             })
