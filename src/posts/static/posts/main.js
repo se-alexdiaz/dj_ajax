@@ -8,9 +8,11 @@ const postForm = document.getElementById('postForm')
 const title = document.getElementById('id_title')
 const body = document.getElementById('id_body')
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
-console.log(csrf)
-
 const alertBox = document.getElementById('alertBox')
+
+const url = window.location.href
+
+console.log(csrf)
 
 let visible = 3
 
@@ -83,8 +85,8 @@ const getData = () => {
     
                         <div class="card-footer">
                             <div class="row">
-                                <div class="col-1">
-                                    <a href="#" class="btn btn-primary">Details</a>
+                                <div class="col-2">
+                                    <a href="${url} ${element.id}" class="btn btn-primary">Details</a>
                                 </div>
                                 <div class="col-2">
                                     <form class="like-unlike-forms" data-form-id="${element.id}">                                        
