@@ -12,7 +12,9 @@ const alertBox = document.getElementById('alertBox')
 
 const url = window.location.href
 
-console.log(csrf)
+const dropZone = document.getElementById('myDropZone')
+const addBTN = document.getElementById('addBTN')
+const closeBTN = [...document.getElementsByClassName('add-modal-close')]
 
 let visible = 3
 
@@ -93,11 +95,11 @@ const getData = () => {
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-2">
-                                    <a href="${url} ${element.id}" class="btn btn-primary">Details</a>
+                                    <a href="${url}${element.id}" class="btn btn-primary">Details</a>
                                 </div>
                                 <div class="col-2">
                                     <form class="like-unlike-forms" data-form-id="${element.id}">                                        
-                                        <button href="#" id="like-unlike-${element.id}" class="btn btn-primary">${element.liked ? `Unlike (${element.count}`: `Like (${element.count}`}</button>
+                                        <button id="like-unlike-${element.id}" class="btn btn-primary">${element.liked ? `Unlike (${element.count}`: `Like (${element.count}`}</button>
                                     </form>
                                 </div>
                             </div>
@@ -135,6 +137,7 @@ loadBtn.addEventListener('click', () => {
 
 })
 
+let newPostId = null
 postForm.addEventListener('submit', e => {
     e.preventDefault()
 
@@ -148,6 +151,7 @@ postForm.addEventListener('submit', e => {
         },
         success: function(response) {
             console.log(response)
+            newPostId = response.id
             postsBox.insertAdjacentHTML('afterbegin',  `
 
                 <div class="card mb-2">
@@ -160,11 +164,11 @@ postForm.addEventListener('submit', e => {
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-1">
-                                <a href="#" class="btn btn-primary">Details</a>
+                                <a href="${url}${response.id}" class="btn btn-primary">Details</a>
                             </div>
                             <div class="col-2">
                                 <form class="like-unlike-forms" data-form-id="${response.id}">                                        
-                                    <button href="#" id="like-unlike-${response.id}" class="btn btn-primary">Like (0)</button>
+                                    <button id="like-unlike-${response.id}" class="btn btn-primary">Like (0)</button>
                                 </form>
                             </div>
                         </div>
@@ -172,9 +176,9 @@ postForm.addEventListener('submit', e => {
                 </div>
             `)
             likeUnlikePosts()
-            $('#addPostModal').modal('hide')
+            // $('#addPostModal').modal('hide')
             handleAlerts('success', 'New post added!')
-            postForm.reset()
+            // postForm.reset()
         },
         error: function(error) {
             console.log('error', error)
@@ -185,5 +189,31 @@ postForm.addEventListener('submit', e => {
         
 })
 
+
+addBTN.addEventListener('click', () => {
+   dropZone.classList.remove('not-visible')
+    // $('#addPostModal').modal('show')
+})
+
+closeBTN.forEach(btn => btn.addEventListener('click', () => {
+    postForm.reset()
+    if (!dropZone.classList.contains('not-visible')){
+        dropZone.classList.add('not-visible')
+    }
+}))
+
+Dropzone.autoDiscover = false
+const myDropZone = new Dropzone('#myDropZone', {
+    url: 'upload/',
+    init: function() {
+        this.on('sending', function(file, xhr, formData) {
+            formData.append('csrfmiddlewaretoken', csrftoken)
+            formData.append('new_post_id', newPostId)
+        })
+    },
+    maxFiles: 5,
+    maxFilesize: 4,
+    acceptedFiles: '.png, .jpg, .jpeg'
+} )
 
 getData()

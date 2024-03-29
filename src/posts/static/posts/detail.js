@@ -19,9 +19,9 @@ const titleInput = document.getElementById('id_title')
 const bodyInput = document.getElementById('id_body')
 
 
-backBTN.addEventListener('click', () => {
-    history.back()
-})
+// backBTN.addEventListener('click', () => {
+//     history.back()
+// })
 
 $.ajax({
     type: 'GET',
