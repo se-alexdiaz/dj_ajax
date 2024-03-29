@@ -25,7 +25,7 @@ Posts
                 </div>
 
                 <div class="modal-body">
-                    <form id="postForm">
+                    <form id="postForm" autocomplete="off">
                         {% csrf_token %}
                         {{form|crispy}}
                         <div class="modal-footer">
