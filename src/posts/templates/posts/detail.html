@@ -91,5 +91,11 @@
         <div class="spinner-border" role="status"></div>
     </div>
     <div id="postsBox" class="mt-1"></div>
+    <div>
+        <img src="{{ obj.author.avatar.url }}" class="rounded-circle" height="100px" width="auto" alt="{{ obj.author.user.username }}">
+        <p>{{ obj.author.user.username }}</p>
+    </div>
+
+  
 {% endblock content %}
 
