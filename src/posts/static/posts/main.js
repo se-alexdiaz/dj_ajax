@@ -61,7 +61,7 @@ const likeUnlikePosts = () => {
             },
             success: function(response) {
                 console.log(response)
-                clickedBtn.textContent = response.liked ? `Unlike (${response.count})` : `Like (${response.count})`
+                clickedBtn.textContent = response.liked ? `Unlike (${response.count})` : `Likes (${response.count})`
             },
             error: function(error) {
                 console.log('Error:', error)
@@ -85,7 +85,7 @@ const getData = () => {
     
                 data.forEach(element => {
                    postsBox.innerHTML += ` 
-                    <div class="card mb-2">
+                    <div class="card mb-2 ">
     
                         <div class="card-body">
                             <h5 class="card-title">${element.title}</h5>
@@ -99,7 +99,7 @@ const getData = () => {
                                 </div>
                                 <div class="col-2">
                                     <form class="like-unlike-forms" data-form-id="${element.id}">                                        
-                                        <button id="like-unlike-${element.id}" class="btn btn-primary">${element.liked ? `Unlike (${element.count})`: `Like (${element.count})`}</button>
+                                        <button id="like-unlike-${element.id}" class="btn btn-primary">${element.liked ? `Unlike (${element.count})`: `Likes (${element.count})`}</button>
                                     </form>
                                 </div>
                             </div>
@@ -154,7 +154,7 @@ postForm.addEventListener('submit', e => {
             newPostId = response.id
             postsBox.insertAdjacentHTML('afterbegin',  `
 
-                <div class="card mb-2">
+                <div class="card mb-2 testBG">
             
                     <div class="card-body">
                         <h5 class="card-title">${response.title}</h5>

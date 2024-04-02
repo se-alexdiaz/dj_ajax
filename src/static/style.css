@@ -3,7 +3,6 @@
   height: 100vh;
   background: linear-gradient(rgba(34,193,195,1), rgba(253,187,45,1)); 
 }
-
 .not-visible{
     display: none;
 }
@@ -27,7 +26,7 @@
 
 .bgClrGum{
     
-    background: linear-gradient(rgba(238,174,202,1), rgba(148,187,233,1));
+    background: rgb(230, 231, 127)
 }
 
 .textBold{
@@ -36,8 +35,35 @@
 
 .maxImgSize{
     max-height: 600px;
+    border-radius: 15px;
 }
 
 .center{
     margin: 0 auto;
+}
+
+/* Carousel CSS */
+.carousel-control-prev,
+.carousel-control-next {
+    background: none;
+    border: none;
+}
+
+.carousel-control-next-icon, 
+.carousel-control-prev-icon {
+    
+    filter: invert(1);
+}
+.card{
+    border: none;
+}
+
+.card-footer{
+    background: rgb(88, 137, 187)
+}
+
+
+.btn-primary{
+    background: rgb(255, 255, 255);
+    color: black
 }
