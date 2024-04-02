@@ -99,7 +99,7 @@ const getData = () => {
                                 </div>
                                 <div class="col-2">
                                     <form class="like-unlike-forms" data-form-id="${element.id}">                                        
-                                        <button id="like-unlike-${element.id}" class="btn btn-primary">${element.liked ? `Unlike (${element.count}`: `Like (${element.count}`}</button>
+                                        <button id="like-unlike-${element.id}" class="btn btn-primary">${element.liked ? `Unlike (${element.count})`: `Like (${element.count})`}</button>
                                     </form>
                                 </div>
                             </div>

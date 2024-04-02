@@ -1,3 +1,9 @@
+.body
+{
+  height: 100vh;
+  background: linear-gradient(rgba(34,193,195,1), rgba(253,187,45,1)); 
+}
+
 .not-visible{
     display: none;
 }
@@ -9,4 +15,29 @@
 
 .dz:hover{
     border-color: aliceblue !important;
+}
+
+.marginTop{
+    margin-top: 75px;
+}
+
+.marginBottom{
+    margin-bottom: 75px;
+}
+
+.bgClrGum{
+    
+    background: linear-gradient(rgba(238,174,202,1), rgba(148,187,233,1));
+}
+
+.textBold{
+    font-weight: bold;
+}
+
+.maxImgSize{
+    max-height: 600px;
+}
+
+.center{
+    margin: 0 auto;
 }
