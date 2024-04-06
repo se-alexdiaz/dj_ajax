@@ -1,7 +1,8 @@
 .body
 {
   height: 100vh;
-  background: linear-gradient(rgba(34,193,195,1), rgba(253,187,45,1)); 
+  /* background: linear-gradient(rgba(34,193,195,1), rgba(253,187,45,1));  */
+  background: rgb(185, 219, 152);
 }
 .not-visible{
     display: none;
