@@ -68,3 +68,22 @@
     background: rgb(255, 255, 255);
     color: black
 }
+
+.row{
+
+
+    gap: 0px;
+}
+
+.B{
+    border: 1px solid red;
+}
+
+
+.col-1{
+    width: auto;
+}
+
+.row{
+    flex-wrap: nowrap;
+}
