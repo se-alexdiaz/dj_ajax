@@ -192,7 +192,6 @@ postForm.addEventListener('submit', e => {
 
 addBTN.addEventListener('click', () => {
    dropZone.classList.remove('not-visible')
-    // $('#addPostModal').modal('show')
 })
 
 closeBTN.forEach(btn => btn.addEventListener('click', () => {
